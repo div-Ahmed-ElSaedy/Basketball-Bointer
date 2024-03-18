@@ -1,21 +1,17 @@
+// ignore_for_file: avoid_web_libraries_in_flutter
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:zeyad_basket/Pages/Welcom_Page.dart';
+import 'package:zeyad_basket/items/conter_provider.dart';
 import '../items/bottom_Add.dart';
 
-class Home extends StatefulWidget {
+// ignore: must_be_immutable
+class Home extends StatelessWidget {
   const Home({super.key});
 
   @override
-  State<Home> createState() => _basketballState();
-}
-
-// ignore: camel_case_types
-class _basketballState extends State<Home> {
-  int counterTeamA = 0;
-  int counterTeamB = 0;
-
-  @override
   Widget build(BuildContext context) {
+  var count = Provider.of<counterProvider>(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -49,18 +45,14 @@ class _basketballState extends State<Home> {
                       ),
                     ),
                     Text(
-                      '$counterTeamA',
+                      '${count.counterTeamA}',
                       style: const TextStyle(
                         fontSize: 150,
                       ),
                     ),
                     Bottom(
                       onTap: () {
-                        setState(
-                          () {
-                            counterTeamA++;
-                          },
-                        );
+                        count.aPlus1();
                       },
                       text: 'Add 1 Point',
                       color: const Color(0xff1B4242),
@@ -68,11 +60,7 @@ class _basketballState extends State<Home> {
                     const SizedBox(height: 16),
                     Bottom(
                       onTap: () {
-                        setState(
-                          () {
-                            counterTeamA += 2;
-                          },
-                        );
+                        count.aPlus2();
                       },
                       text: 'Add 2 Point',
                       color: const Color(0xff1B4242),
@@ -80,11 +68,7 @@ class _basketballState extends State<Home> {
                     const SizedBox(height: 16),
                     Bottom(
                       onTap: () {
-                        setState(
-                          () {
-                            counterTeamA += 3;
-                          },
-                        );
+                        count.aPlus3();
                       },
                       text: 'Add 3 Point',
                       color: const Color(0xff1B4242),
@@ -113,18 +97,15 @@ class _basketballState extends State<Home> {
                       ),
                     ),
                     Text(
-                      '$counterTeamB',
+                      // '$counterTeamB',
+                      '${count.counterTeamB}',
                       style: const TextStyle(
                         fontSize: 150,
                       ),
                     ),
                     Bottom(
                       onTap: () {
-                        setState(
-                          () {
-                            counterTeamB++;
-                          },
-                        );
+                        count.bPlus1();
                       },
                       text: 'Add 1 Point',
                       color: const Color(0xff1B4242),
@@ -132,11 +113,7 @@ class _basketballState extends State<Home> {
                     const SizedBox(height: 16),
                     Bottom(
                       onTap: () {
-                        setState(
-                          () {
-                            counterTeamB += 2;
-                          },
-                        );
+                        count.bPlus2();
                       },
                       text: 'Add 2 Point',
                       color: const Color(0xff1B4242),
@@ -144,11 +121,7 @@ class _basketballState extends State<Home> {
                     const SizedBox(height: 16),
                     Bottom(
                       onTap: () {
-                        setState(
-                          () {
-                            counterTeamB += 3;
-                          },
-                        );
+                        count.bPlus3();
                       },
                       text: 'Add 3 Point',
                       color: const Color(0xff1B4242),
@@ -163,12 +136,12 @@ class _basketballState extends State<Home> {
             const SizedBox(height: 40),
             Bottom(
               onTap: () {
-                setState(
-                  () {
-                    counterTeamA = 0;
-                    counterTeamB = 0;
-                  },
-                );
+                // setState(
+                //   () {
+                //     counterTeamA = 0;
+                //     counterTeamB = 0;
+                //   },
+                // );
               },
               text: 'Reset',
               color: const Color(0xffFF004D),
